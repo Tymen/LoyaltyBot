@@ -9,6 +9,8 @@ require('dotenv').config();
 const { EventResponse } = require('./modules/onMessage')
 
 // Define Variable
+const { customMessage } = require('./modules/customMessage')
+const welcome = client.channels.cache.get('764855446938189836')
 
 // <=========> Status Message <=========> //
 
@@ -23,8 +25,13 @@ client.on('message', message => {
 })
 
 client.on('guildMemberAdd', member => {
-
+    member.guild.channels.cache.find(channel => channel.name === 'welkom').send(customMessage.welcomeMessage(member.user, client))
 })
+
+client.on('guildMemberRemove', member => {
+    member.guild.channels.cache.find(channel => channel.name === 'welkom').send(customMessage.leaveMessage(member.user, client))
+})
+
 // <=========> Login to the discord bot client <=========> //
 
 client.login(process.env.BOT_TOKEN)

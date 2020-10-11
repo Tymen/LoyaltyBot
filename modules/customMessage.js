@@ -15,12 +15,20 @@ const customMessage = {
     welcomeMessage: (Author, client) => {
         return new Discord.MessageEmbed()
         .setColor(defaultColor)
-        .setTitle('Welkom ' + Author.username)
+        .setTitle(Author.username + ", Welkom in Loyalty Community!")
         .setAuthor(defaultAuthor)
+        .setDescription("Vergeet niet de regels even door te lezen!")
         .setDescription("Je bent member: " + getMemberCount(client))
         .setThumbnail(Author.avatarURL())
     },
-
+    leaveMessage: (Author, client) => {
+        return new Discord.MessageEmbed()
+        .setColor(defaultColor)
+        .setTitle(Author.username + ' heeft ons verlaten!')
+        .setAuthor(defaultAuthor)
+        .setDescription("Loyalty heeft nu " + getMemberCount(client) + " leden")
+        .setThumbnail(Author.avatarURL())
+    },
     help: () => {
         return new Discord.MessageEmbed()
         .setColor(defaultColor)
